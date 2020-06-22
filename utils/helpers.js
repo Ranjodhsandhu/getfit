@@ -54,7 +54,7 @@ export function getMetricMetaInfo(metric){
             step:1,
             type:'steppers',
             getIcon(){
-                return 
+                return( 
                     <View>
                         <MaterialIcons
                             name='directions-run'
@@ -62,6 +62,7 @@ export function getMetricMetaInfo(metric){
                             size={35}
                         />
                     </View>
+                )
             }
         },
         bike: {
@@ -71,14 +72,15 @@ export function getMetricMetaInfo(metric){
             step: 1,
             type: 'steppers',
             getIcon() {
-                return
-                <View>
-                    <MaterialCommunityIcons
-                        name='bike'
-                        color={'black'}
-                        size={35}
-                    />
-                </View>
+                return(
+                    <View>
+                        <MaterialCommunityIcons
+                            name='bike'
+                            color={'black'}
+                            size={35}
+                        />
+                    </View>
+                )
             }
         },
         swim:{
@@ -88,14 +90,15 @@ export function getMetricMetaInfo(metric){
             step: 100,
             type: 'steppers',
             getIcon(){
-                return
-                <View>
-                    <MaterialCommunityIcons
-                        name='swim'
-                        color={'black'}
-                        size={35}
-                    />
-                </View>
+                return(
+                    <View>
+                        <MaterialCommunityIcons
+                            name='swim'
+                            color={'black'}
+                            size={35}
+                        />
+                    </View>
+                )
             }
         },
         sleep: {
@@ -105,14 +108,15 @@ export function getMetricMetaInfo(metric){
             step: 1,
             type: 'slider',
             getIcon (){
-                return
-                <View>
-                    <FontAwesome
-                        name='bed'
-                        color={'black'}
-                        size={35}
-                    />
-                </View>
+                return(
+                    <View>
+                        <FontAwesome
+                            name='bed'
+                            color={'black'}
+                            size={35}
+                        />
+                    </View>
+                )
             }},
         eat:{
             displayName: 'Eat',
@@ -121,14 +125,15 @@ export function getMetricMetaInfo(metric){
             step: 1,
             type: 'slider',
             getIcon () {
-                return
-                <View>
-                    <MaterialCommunityIcons
-                        name='food'
-                        color={'black'}
-                        size={35}
-                    />
-                </View>
+                return(
+                    <View>
+                        <MaterialCommunityIcons
+                            name='food'
+                            color={'black'}
+                            size={35}
+                        />
+                    </View>
+                )
             }
         }
     };
