@@ -45,6 +45,8 @@ export function timeToString(time = Date.now()) {
     return todayUTC.toISOString().split('T')[0]
 }
 
+
+
 export function getMetricMetaInfo(metric){
     const info = {
         run:{
@@ -140,4 +142,11 @@ export function getMetricMetaInfo(metric){
     return typeof metric === 'undefined'
         ? info
         : info[metric]; 
+}
+
+
+export function getDailyReminderValue(){
+    return {
+        today:"👋 Don't forget to log your data",
+    }
 }

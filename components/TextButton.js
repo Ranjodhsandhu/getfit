@@ -7,6 +7,5 @@ export default function TextButton({children, onPress}){
             <Text>{children}</Text>
         </TouchableOpacity>
     )
-
 }
 
