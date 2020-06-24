@@ -4,6 +4,8 @@ import { getMetricMetaInfo, timeToString} from '../utils/helpers';
 import FitSlider from '../components/FitSlider';
 import FitStepper from '../components/FitStepper';
 import DateHeader from  '../components/DateHeader';
+import { Ionicons } from '@expo/vector-icons';
+import TextButton from '../components/TextButton';
 
 function SubmitBtn({onPress}){
     return (
@@ -66,9 +68,33 @@ export default class AddEntry extends Component{
 
         // clear the local notification
     }
+    reset = ()=>{
+        const key = timeToString();
+
+        // update Redux
+
+        // Route to home
+        
+        // update 'DB'
+    }
     render(){
         const metaInfo = getMetricMetaInfo();
+        if(this.props.alreadyLogged){
+            return(
+                <View>
+                    <Ionicons
+                        name="ios-happy"
+                        size={100}
+                    />
+                    <Text>You already logged your info for today!</Text>
+                    
+                    <TextButton onPress={this.reset}>
+                        <Text>Reset</Text>
+                    </TextButton>
+                </View>
+            )
 
+        }
         return(
             <View>  
                 <Text>Hello</Text>
