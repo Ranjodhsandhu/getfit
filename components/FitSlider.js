@@ -1,10 +1,21 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Slider, Text } from 'react-native';
 
-export default function FitSlider() {
+export default function FitSlider({max, unit, step, value, onChange}) {
     return (
         <View>
-            <Text>  Fit Slider</Text>
+            <Slider 
+                step={step}
+                value={value}
+                minimumValue={0}
+                maximumValue={max}
+                onValueChange={onChange}
+            />
+            <View>
+                <Text>{value}</Text>
+                <Text>{unit}</Text>
+            </View>
+            
         </View>
     )
 }
