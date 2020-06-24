@@ -6,6 +6,7 @@ import FitStepper from '../components/FitStepper';
 import DateHeader from  '../components/DateHeader';
 import { Ionicons } from '@expo/vector-icons';
 import TextButton from '../components/TextButton';
+import { submitEntry, removeEntry } from '../utils/api';
 
 function SubmitBtn({onPress}){
     return (
@@ -65,6 +66,7 @@ export default class AddEntry extends Component{
 
 
         // save to 'DB'
+        submitEntry({key, entry});
 
         // clear the local notification
     }
@@ -76,6 +78,7 @@ export default class AddEntry extends Component{
         // Route to home
         
         // update 'DB'
+        removeEntry(key);
     }
     render(){
         const metaInfo = getMetricMetaInfo();
