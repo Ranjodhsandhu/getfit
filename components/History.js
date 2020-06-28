@@ -6,6 +6,9 @@ import { timeToString, getDailyReminderValue } from '../utils/helpers';
 import { fetchCalenderResults } from '../utils/api';
 import UdaciFitnessCalender from 'udacifitness-calendar-fix';
 
+// This component will keep the track data from user's previous submissions in calendar form
+// This calendar has an issue with the package from the udacity course so need to add the package as above "udacifitness-calendar-fix";
+
 class History extends Component{
     componentDidMount(){
         const { dispatch } = this.props;
