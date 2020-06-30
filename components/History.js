@@ -7,11 +7,16 @@ import { fetchCalenderResults } from '../utils/api';
 import UdaciFitnessCalender from 'udacifitness-calendar-fix';
 import { white } from '../utils/colors';
 import DateHeader from './DateHeader';
+import MetricCard from './MetricCard';
+import { AppLoading } from 'expo';
 
 // This component will keep the track data from user's previous submissions in calendar form
 // This calendar has an issue with the package from the udacity course so need to add the package as above "udacifitness-calendar-fix";
 
 class History extends Component{
+    state ={
+        ready:false,
+    }
     componentDidMount(){
         const { dispatch } = this.props;
         fetchCalenderResults()
@@ -23,6 +28,7 @@ class History extends Component{
                 }))
             }
         })
+        .then(()=>{this.setState(()=>({ready:true}))})
     }
     renderItem = ({today, ...metrics}, formattedDate, key)=>(
         <View style={styles.item}>
@@ -34,8 +40,8 @@ class History extends Component{
                 </Text>   
             </View>
             : <TouchableOpacity onPress={()=> console.log('Pressed!')}>
-                    <Text>{JSON.stringify(metrics)}</Text>
-                </TouchableOpacity>
+                    <MetricCard metrics={metrics} date={formattedDate}/>
+            </TouchableOpacity>
         }
         </View>
     )
@@ -51,6 +57,10 @@ class History extends Component{
     }
     render(){
         const { entries } = this.props;
+        const { ready } = this.state;
+        if(ready === false){
+            return <AppLoading />
+        }
         return (
             <UdaciFitnessCalender 
                 items={entries}
