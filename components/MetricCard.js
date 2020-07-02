@@ -14,7 +14,7 @@ export default function MetricCard({date, metrics}){
                 return (
                     <View style={styles.metric} key={metric}>
                         {getIcon()}
-                        <View>
+                        <View style={{paddingLeft:15}}>
                             <Text style={{fontSize:20}}>
                                 {displayName}
                             </Text>
