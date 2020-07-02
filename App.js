@@ -1,19 +1,21 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { View, Platform, StatusBar } from 'react-native';
-import AddEntry from './components/AddEntry';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from './reducers';
-import History from  './components/History';
-import {purple , white} from './utils/colors';
-import { FontAwesome, Ionicons } from '@expo/vector-icons'; 
-import { createMaterialTopTabNavigator,createBottomTabNavigator } from 'react-navigation-tabs';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { createAppContainer } from 'react-navigation';
-import  Constants  from 'expo-constants';
+import { createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation-tabs';
+import { createStackNavigator } from 'react-navigation-stack';
+import Constants from 'expo-constants';
+import reducer from './reducers';
+import History from './components/History';
+import AddEntry from './components/AddEntry';
+import { white, purple } from './utils/colors';
+import EntryDetail from './components/EntryDetail';
 
-function GetFitStatusBar ({backgroundColor, ...props}){
+function UdaciStatusBar({ backgroundColor, ...props }) {
   return (
-    <View style={{ backgroundColor, height: Constants.statusBarHeight}}> 
+    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
       <StatusBar translucent backgroundColor={backgroundColor} {...props} />
     </View>
   )
@@ -33,7 +35,7 @@ const Tabs = {
       tabBarLabel: 'Add Entry',
       tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />
     },
-  },
+  }
 }
 
 const navigationOptions = {
@@ -53,15 +55,35 @@ const navigationOptions = {
   }
 }
 
-const TabNav = createAppContainer(Platform.OS === 'ios' ? createBottomTabNavigator(Tabs, navigationOptions) : createMaterialTopTabNavigator(Tabs, navigationOptions));
+const TabNav = Platform.OS === 'ios' ? createBottomTabNavigator(Tabs, navigationOptions) : createMaterialTopTabNavigator(Tabs, navigationOptions)
 
-export default function App() {
-  return (
-    <Provider store={createStore(reducer)}>
-      <View style={{flex:1}}>
-        <GetFitStatusBar />
-        <TabNav />
-      </View>
-    </Provider>
-  );
+const MainNavigator = createAppContainer(createStackNavigator({
+  Home: {
+    screen: TabNav,
+    navigationOptions: ({ navigation }) => ({
+      headerShown: false,
+    }),
+  },
+  EntryDetail: {
+    screen: EntryDetail,
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    })
+  }
+}))
+
+export default class App extends Component {
+  render() {
+    return (
+      <Provider store={createStore(reducer)}>
+        <View style={{ flex: 1 }}>
+          <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
+          <MainNavigator />
+        </View>
+      </Provider>
+    );
+  }
 }
