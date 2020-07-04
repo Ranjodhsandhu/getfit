@@ -10,6 +10,8 @@ import { submitEntry, removeEntry } from '../utils/api';
 import { connect } from 'react-redux';
 import { addEntry } from '../actions';
 import { white, purple } from '../utils/colors';
+import {NavigationActions} from 'react-navigation';
+
 
 function SubmitBtn({onPress}){
     return (
@@ -70,7 +72,7 @@ class AddEntry extends Component{
             eat: 0,
         }))
         // navigate to home
-
+        this.toHome();
 
         // save to 'DB'
         submitEntry({key, entry});
@@ -86,9 +88,14 @@ class AddEntry extends Component{
         }))
 
         // Route to home
-        
+        this.toHome();
         // update 'DB'
         removeEntry(key);
+    }
+    toHome=()=>{
+        this.props.navigation.dispatch(NavigationActions.back({
+            key:'AddEntry'
+        }))
     }
     render(){
         const metaInfo = getMetricMetaInfo();
